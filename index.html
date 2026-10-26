@@ -5,85 +5,225 @@
 <meta name="theme-color" content="#0b1020">
 <title>Rota da Aprovação | Agente Administrativo Curitiba</title>
 <style>
-:root{color-scheme:dark;--bg:#0b1020;--panel:#131b2e;--panel2:#18233a;--line:#283651;--text:#edf2ff;--muted:#a7b4ce;--accent:#7ce0b1;--blue:#8ab4ff;--gold:#f4c96b;--red:#ff9b9b}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top right,#1b2c49 0,transparent 42%),var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}a{color:var(--blue)}button,input{font:inherit}.wrap{max-width:1180px;margin:auto;padding:26px 18px 60px}.hero{padding:28px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(130deg,#182844,#101728 72%);box-shadow:0 20px 70px #0003}.eyebrow{color:var(--accent);font-weight:800;text-transform:uppercase;letter-spacing:.13em;font-size:.76rem}.hero h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.06;margin:.5rem 0}.hero p{max-width:720px;color:var(--muted)}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px}.stat,.panel,.day{border:1px solid var(--line);background:#111a2bde;border-radius:16px;padding:16px}.stat strong{display:block;font-size:1.6rem}.stat span,.muted{color:var(--muted);font-size:.88rem}.nav{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}.nav a{border:1px solid var(--line);border-radius:999px;padding:8px 13px;text-decoration:none;background:#111a2b}.layout{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}.panel{margin-bottom:16px}.panel h2{margin:0 0 12px;font-size:1.25rem}.panel h3{margin:18px 0 8px;font-size:1rem}.progress{height:9px;background:#28334a;border-radius:99px;overflow:hidden}.progress>div{height:100%;width:0;background:var(--accent);transition:width .2s}.controls{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.btn{border:1px solid var(--line);border-radius:10px;padding:9px 13px;background:var(--panel2);color:var(--text);cursor:pointer}.btn.primary{background:var(--accent);color:#092019;border-color:var(--accent);font-weight:800}.day{display:grid;grid-template-columns:112px 1fr;gap:14px;margin:9px 0}.date{font-weight:800;color:var(--accent)}.day small{color:var(--muted)}.day label{display:flex;gap:10px;align-items:flex-start;cursor:pointer}.day input,.topic input{accent-color:var(--accent);margin-top:5px;transform:scale(1.15)}.topic{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid #283651;align-items:flex-start}.topic:last-child{border:0}.topic span{flex:1}.topic input:checked+span{text-decoration:line-through;color:var(--muted)}.subject{padding:12px;border-radius:12px;background:#18233a;margin:9px 0}.subject summary{cursor:pointer;font-weight:750}.subject .topic{padding-left:4px}.field{width:100%;background:#0b1020;border:1px solid var(--line);border-radius:10px;padding:10px;color:var(--text)}.scoregrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.foot{color:var(--muted);font-size:.82rem;margin-top:18px}.tag{display:inline-block;border:1px solid #365247;background:#18362e;color:var(--accent);border-radius:999px;padding:3px 9px;font-size:.78rem;font-weight:700}.warning{border-left:3px solid var(--gold);padding:10px 13px;background:#2a261a;border-radius:8px;color:#f6e4b1;font-size:.9rem}
-@media(max-width:800px){.layout{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.day{grid-template-columns:1fr;gap:5px}.hero{padding:22px}.wrap{padding:14px 12px 40px}}
-</style></head>
-<body><main class="wrap">
-<header class="hero"><div class="eyebrow">Plano de preparação • 2026</div><h1>Rota da Aprovação</h1><p>Concurso de <strong>Agente Administrativo — Prefeitura de Curitiba</strong>. Um painel para organizar seus estudos, acompanhar revisões e registrar simulados até a prova.</p><span class="tag">Banca FAFIPA</span>
-<div class="stats"><div class="stat"><strong>13/12</strong><span>Data prevista da prova</span></div><div class="stat"><strong>34</strong><span>Dias úteis de estudo no plano</span></div><div class="stat"><strong>12 h</strong><span>Meta diária informada</span></div><div class="stat"><strong id="percent">0%</strong><span>Checklist concluído</span></div></div></header>
-<nav class="nav"><a href="#plano">Plano diário</a><a href="#conteudo">Conteúdo</a><a href="#revisao">Revisões</a><a href="#simulados">Simulados</a><a href="#fontes">Edital oficial</a></nav>
-<div class="layout"><section>
-<div class="panel" id="plano"><h2>Plano diário</h2><p class="muted">Período: 27/10 a 11/12/2026. O plano considera estudo de segunda a sexta, sem sábado e domingo. Marque o dia quando concluir.</p><div class="progress"><div id="bar"></div></div><p class="muted" id="progressText">0 de 34 dias concluídos</p><div class="controls"><button class="btn" id="todayBtn">Ir para o próximo dia pendente</button><button class="btn" id="exportBtn">Exportar progresso</button></div><div id="days"></div></div>
-<div class="panel" id="revisao"><h2>Revisão espaçada</h2><p class="muted">Registre revisões rápidas para não estudar um assunto uma única vez.</p><div id="reviews"></div></div>
-</section><aside>
-<div class="panel"><h2>Rotina sugerida (12 horas)</h2><p class="muted">Ajuste os blocos conforme seu rendimento; pausas e sono fazem parte da preparação.</p>
-<div class="subject"><strong>Bloco 1 — 3 h</strong><br><span class="muted">Teoria do assunto principal do dia + anotações curtas.</span></div><div class="subject"><strong>Bloco 2 — 3 h</strong><br><span class="muted">Continuação da teoria e exemplos resolvidos.</span></div><div class="subject"><strong>Bloco 3 — 3 h</strong><br><span class="muted">Questões da FAFIPA ou de perfil semelhante; corrigir cada erro.</span></div><div class="subject"><strong>Bloco 4 — 2 h</strong><br><span class="muted">Revisão de assuntos anteriores e caderno de erros.</span></div><div class="subject"><strong>Fechamento — 1 h</strong><br><span class="muted">Recordação ativa: explique o conteúdo sem olhar as notas.</span></div>
-<div class="warning">12 horas por dia é uma carga alta. Se a qualidade cair, priorize sono, questões corrigidas e revisões ativas em vez de apenas acumular horas.</div></div>
-<div class="panel" id="simulados"><h2>Registro de simulados</h2><p class="muted">Informe a nota ou percentual e anote os temas que mais errou.</p><div class="scoregrid"><label class="muted">Simulado 1<input class="field score" id="s1" placeholder="Ex.: 62%" /></label><label class="muted">Simulado 2<input class="field score" id="s2" placeholder="Ex.: 71%" /></label><label class="muted">Simulado 3<input class="field score" id="s3" placeholder="Ex.: 78%" /></label><label class="muted">Simulado final<input class="field score" id="s4" placeholder="Ex.: 84%" /></label></div><label class="muted" style="display:block;margin-top:12px">Caderno de erros<textarea class="field" id="errors" rows="5" placeholder="Assunto, por que errei e qual regra preciso lembrar..."></textarea></label></div>
-<div class="panel"><h2>Regra de estudo</h2><ul><li>Estude entendendo, não apenas copiando.</li><li>Resolva questões todos os dias.</li><li>Registre por que errou cada questão.</li><li>Volte aos erros após 1, 7 e 14 dias.</li><li>Faça simulados cronometrados e revise o gabarito.</li></ul></div>
+:root{color-scheme:dark;--bg:#0a0e18;--surface:#111827;--surface2:#182235;--line:#28364c;--text:#f2f5fb;--muted:#a4b0c4;--accent:#7ce0b1;--blue:#9bbcff;--gold:#f4cc72;--red:#ff9b9b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% 0%,#1a2b45 0,transparent 36%),var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}button,input,textarea{font:inherit}button{cursor:pointer}a{color:var(--blue)}.shell{max-width:1180px;margin:auto;padding:24px 18px 64px}.top{display:flex;justify-content:space-between;gap:18px;align-items:center;margin-bottom:18px}.brand{font-size:.88rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}.exam{color:var(--muted);font-size:.88rem}.hero{padding:30px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(130deg,#192a43,#101725 72%);box-shadow:0 18px 60px #0003}.eyebrow{font-size:.76rem;text-transform:uppercase;letter-spacing:.14em;color:var(--accent);font-weight:800}.hero h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.08;margin:8px 0}.hero p{color:var(--muted);max-width:720px;margin:8px 0 18px}.hero-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.pill{border:1px solid #365247;background:#18362e;color:var(--accent);padding:4px 10px;border-radius:99px;font-size:.8rem;font-weight:750}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}.metric{background:#0c1422a8;border:1px solid #2b3a50;border-radius:15px;padding:14px}.metric strong{display:block;font-size:1.45rem}.metric span{font-size:.82rem;color:var(--muted)}.nav{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 22px;padding:8px;border:1px solid var(--line);border-radius:15px;background:#0e1523}.nav button{background:transparent;border:1px solid transparent;color:var(--muted);padding:10px 13px;border-radius:10px;font-weight:700}.nav button.active{background:var(--surface2);border-color:#3b4b65;color:var(--text)}.page{display:none}.page.active{display:block;animation:appear .18s ease-out}@keyframes appear{from{opacity:.5;transform:translateY(3px)}to{opacity:1;transform:translateY(0)}}.grid{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}.panel{background:#111827e8;border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:16px;min-width:0}.panel h2{font-size:1.25rem;margin:0 0 8px}.panel h3{font-size:1rem;margin:18px 0 8px}.muted{color:var(--muted);font-size:.9rem}.progress{height:9px;background:#29364a;border-radius:99px;overflow:hidden;margin:12px 0}.progress div{height:100%;background:var(--accent);width:0;transition:width .2s}.btn{border:1px solid var(--line);background:var(--surface2);color:var(--text);border-radius:10px;padding:10px 14px;font-weight:700}.btn.primary{background:var(--accent);color:#0b2018;border-color:var(--accent)}.btn:focus-visible,.nav button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.next{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap;background:#16263a;border:1px solid #31445d;border-radius:15px;padding:18px;margin-top:18px}.next h2{margin:3px 0 6px}.phase-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}.phase-card{border:1px solid var(--line);border-radius:15px;background:#121d2e;padding:17px}.phase-card .num{color:var(--accent);font-weight:900;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase}.phase-card h3{margin:7px 0}.phase-card p{color:var(--muted);font-size:.88rem}.phase-card .count{font-size:.8rem;color:var(--blue)}.day{display:grid;grid-template-columns:90px 1fr auto;gap:13px;align-items:start;border:1px solid var(--line);border-radius:13px;padding:14px;margin:9px 0;background:#121c2c}.date{color:var(--accent);font-weight:850}.day h3{margin:0 0 4px;font-size:.98rem}.day p{margin:0;color:var(--muted);font-size:.87rem}.day label{display:flex;gap:8px;align-items:center;font-size:.82rem;color:var(--muted);white-space:nowrap}.day input,.topic input,.review input{accent-color:var(--accent);margin-top:4px}.day.done{opacity:.65}.day.done h3{text-decoration:line-through}.topic-group{border:1px solid var(--line);background:#121c2c;border-radius:13px;margin:10px 0;overflow:hidden}.topic-group summary{cursor:pointer;list-style:none;padding:15px;font-weight:800;display:flex;justify-content:space-between;gap:12px}.topic-group summary::-webkit-details-marker{display:none}.topic-group summary:after{content:"＋";color:var(--accent)}.topic-group[open] summary:after{content:"−"}.topic-group summary span{font-size:.8rem;color:var(--muted);font-weight:500}.topic-list{padding:0 15px 12px}.topic{display:flex;gap:10px;padding:9px 0;border-top:1px solid #263247;align-items:flex-start}.topic span{flex:1;font-size:.91rem}.topic input:checked+span{text-decoration:line-through;color:var(--muted)}.subject-label{font-size:.76rem;color:var(--blue);font-weight:800;text-transform:uppercase;letter-spacing:.07em}.routine{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.routine-item{padding:13px;border:1px solid var(--line);background:#162033;border-radius:12px}.routine-item strong{display:block}.routine-item span{font-size:.85rem;color:var(--muted)}.review{display:flex;gap:10px;align-items:flex-start;border-bottom:1px solid var(--line);padding:12px 0}.review:last-child{border:0}.review span{flex:1}.review small{display:block;color:var(--muted);margin-top:3px}.field{width:100%;background:#0b111d;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:11px}.scores{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.scores label{font-size:.83rem;color:var(--muted)}.scores input{display:block;margin-top:5px}.notice{border-left:3px solid var(--gold);background:#2a261b;color:#f6e6b7;border-radius:8px;padding:12px 14px;font-size:.88rem}.small-actions{display:flex;gap:8px;flex-wrap:wrap}.foot{color:var(--muted);font-size:.8rem;margin-top:18px}.section-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:14px}.section-head h2{margin:0}.search{max-width:320px}.hidden{display:none!important}
+@media(max-width:800px){.grid{grid-template-columns:1fr}.phase-grid{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(3,1fr)}.hero{padding:22px}.shell{padding:14px 12px 42px}.day{grid-template-columns:1fr auto;gap:7px}.day .date{grid-column:1/-1}.day label{white-space:normal}.nav{display:grid;grid-template-columns:repeat(3,1fr)}.nav button{padding:9px 5px;font-size:.84rem}.routine{grid-template-columns:1fr}.top{align-items:flex-start;flex-direction:column}.metrics strong{font-size:1.2rem}}
+@media(max-width:420px){.metrics{grid-template-columns:1fr}.scores{grid-template-columns:1fr}}
+</style>
+</head>
+<body><main class="shell">
+<div class="top"><div class="brand">Rota da Aprovação</div><div class="exam">Agente Administrativo · Curitiba · FAFIPA</div></div>
+<header class="hero">
+<div class="eyebrow">Sua preparação, por etapas</div><h1>Um passo de cada vez.</h1>
+<p>Plano de estudos de 27 de outubro a 11 de dezembro de 2026. Primeiro, entenda a rota; depois, avance por uma fase de cada vez. O progresso fica salvo neste navegador.</p>
+<div class="hero-row"><span class="pill">Prova prevista: 13/12/2026</span><span class="pill">Segunda a sexta</span><span class="pill">12 horas disponíveis por dia</span></div>
+<div class="metrics"><div class="metric"><strong id="metricDone">0/34</strong><span>dias concluídos</span></div><div class="metric"><strong id="metricTopics">0%</strong><span>edital marcado como estudado</span></div><div class="metric"><strong id="metricPhase">Fase 1</strong><span>etapa atual</span></div></div>
+<div class="progress"><div id="overallBar"></div></div>
+<div class="next"><div><div class="subject-label">Próxima ação</div><h2 id="nextTitle">Comece pelo primeiro dia</h2><div class="muted" id="nextText">Abra seu plano e avance conforme concluir cada sessão.</div></div><button class="btn primary" onclick="showPage('plan')">Ver meu plano →</button></div>
+</header>
+<nav class="nav" aria-label="Navegação principal">
+<button class="active" data-page="home" onclick="showPage('home')">Visão geral</button><button data-page="plan" onclick="showPage('plan')">Plano por fases</button><button data-page="syllabus" onclick="showPage('syllabus')">Edital completo</button><button data-page="reviews" onclick="showPage('reviews')">Revisões</button><button data-page="simulados" onclick="showPage('simulados')">Simulados</button><button data-page="sources" onclick="showPage('sources')">Fontes oficiais</button>
+</nav>
+<section class="page active" id="page-home">
+<div class="grid">
+<div class="panel"><h2>Seu caminho até a prova</h2><p class="muted">Não precisa olhar tudo de uma vez. Concentre-se na fase atual e marque os assuntos no edital à medida que estudar.</p>
+<div class="phase-grid" style="grid-template-columns:1fr">
+<div class="phase-card"><div class="num">Fase 01 · 27/10 a 13/11</div><h3>Construir a base</h3><p>Português, raciocínio lógico, informática e legislação básica.</p><div class="count" id="homePhase1">0/14 dias concluídos</div><button class="btn" style="margin-top:12px" onclick="openPhase(1)">Abrir fase 1 →</button></div>
+<div class="phase-card"><div class="num">Fase 02 · 16/11 a 04/12</div><h3>Conhecimentos específicos</h3><p>Administração Pública, Direito, ética, atendimento e gestão da informação.</p><div class="count" id="homePhase2">0/15 dias concluídos</div><button class="btn" style="margin-top:12px" onclick="openPhase(2)">Abrir fase 2 →</button></div>
+<div class="phase-card"><div class="num">Fase 03 · 07/12 a 11/12</div><h3>Revisar e consolidar</h3><p>Simulados, caderno de erros e revisão final sem sobrecarregar a véspera.</p><div class="count" id="homePhase3">0/5 dias concluídos</div><button class="btn" style="margin-top:12px" onclick="openPhase(3)">Abrir fase 3 →</button></div>
+</div></div>
+<aside>
+<div class="panel"><h2>Como usar a plataforma</h2><ol><li>Abra <strong>Plano por fases</strong>.</li><li>Faça a sessão indicada para o dia.</li><li>Marque o dia concluído.</li><li>Em <strong>Edital completo</strong>, marque cada tópico quando realmente tiver estudado.</li><li>Registre revisões e erros para voltar neles.</li></ol></div>
+<div class="panel"><h2>Rotina sugerida</h2><div class="routine"><div class="routine-item"><strong>3 h · Aprender</strong><span>Teoria com foco e anotações curtas.</span></div><div class="routine-item"><strong>3 h · Praticar</strong><span>Questões e exemplos do assunto.</span></div><div class="routine-item"><strong>3 h · Corrigir</strong><span>Questões comentadas e caderno de erros.</span></div><div class="routine-item"><strong>3 h · Fixar</strong><span>Revisões, recordação ativa e exercícios.</span></div></div><p class="notice" style="margin-top:14px">12 horas é uma carga intensa. Faça pausas e preserve o sono; estudar por mais tempo não garante aprender mais.</p></div>
 </aside></div>
-<div class="panel" id="conteudo"><h2>Checklist de conteúdo</h2><p class="muted">Lista de organização baseada nos eixos do edital discutidos durante a preparação. Confira cada item com o Anexo II da versão retificada antes de considerar o programa completo: esta página não substitui o edital oficial.</p><div id="subjects"></div></div>
-<div class="panel" id="fontes"><h2>Edital e fontes oficiais</h2><p>Consulte sempre a versão mais recente e as retificações publicadas pela organização do concurso.</p><ul><li><a href="https://cpmc-fafipa.selecao.net.br/concurso/2-concurso-publico-do-municipio-de-curitiba-pr-medio" target="_blank" rel="noopener">Página do concurso — FAFIPA</a></li><li><a href="https://concursos.curitiba.pr.gov.br/documento/00/0/2026/4/19/1/1" target="_blank" rel="noopener">Documentos oficiais do edital — Prefeitura de Curitiba</a></li></ul><p class="warning">A data de 13/12/2026 e o conteúdo do programa devem ser confirmados nos comunicados oficiais. Este painel é uma ferramenta de planejamento pessoal, não um canal oficial do concurso.</p></div>
-<footer class="foot">Seu progresso é salvo neste navegador usando armazenamento local. Se limpar os dados do navegador ou trocar de dispositivo, exporte e guarde um backup do progresso.</footer>
+</section>
+<section class="page" id="page-plan">
+<div class="section-head"><div><h2>Plano de estudos por fases</h2><p class="muted">A agenda mostra apenas a fase escolhida, para manter a tela simples.</p></div><div class="small-actions"><button class="btn" onclick="exportProgress()">Exportar progresso</button><button class="btn" onclick="goNextPending()">Próximo dia pendente</button></div></div>
+<div class="phase-grid" id="phaseSelector">
+<div class="phase-card"><div class="num">Fase 01</div><h3>Construir a base</h3><p>27/10 — 13/11</p><button class="btn" onclick="openPhase(1)">Ver agenda</button></div>
+<div class="phase-card"><div class="num">Fase 02</div><h3>Conhecimentos específicos</h3><p>16/11 — 04/12</p><button class="btn" onclick="openPhase(2)">Ver agenda</button></div>
+<div class="phase-card"><div class="num">Fase 03</div><h3>Revisão final</h3><p>07/12 — 11/12</p><button class="btn" onclick="openPhase(3)">Ver agenda</button></div>
+</div>
+<div class="panel" style="margin-top:16px"><div class="section-head"><div><div class="subject-label" id="phaseLabel">FASE 1</div><h2 id="phaseTitle">Construir a base</h2><p class="muted" id="phaseDesc">Fundamentos das matérias básicas e legislação.</p></div><div class="pill" id="phaseProgress">0/14 concluídos</div></div><div class="progress"><div id="phaseBar"></div></div><div id="days"></div></div>
+</section>
+<section class="page" id="page-syllabus">
+<div class="section-head"><div><h2>Edital completo, tópico por tópico</h2><p class="muted">Organizado conforme o Anexo II do cargo de Agente Administrativo. Marque apenas depois de estudar o tópico.</p></div><input class="field search" id="topicSearch" placeholder="Buscar assunto ou lei..." aria-label="Buscar assunto no edital"></div>
+<div class="panel"><div class="section-head"><div><strong id="topicProgressText">0 de 83 tópicos marcados</strong><div class="muted">Seu checklist é independente da agenda diária.</div></div><button class="btn" onclick="clearTopicFilter()">Limpar busca</button></div><div class="progress"><div id="topicBar"></div></div><div id="subjects"></div></div>
+<p class="notice">A lista abaixo segue o Anexo II do edital para Agente Administrativo. O item 2.6 aparece no anexo apenas como “Métodos e Técnicas de Pesquisa”, sem detalhamento de subitens. Consulte também o edital retificado para eventuais atualizações.</p>
+</section>
+<section class="page" id="page-reviews">
+<div class="grid"><div class="panel"><h2>Central de revisões</h2><p class="muted">Use revisões curtas e ativas. Tente responder ou explicar sem olhar o material antes de conferir.</p><div id="reviews"></div></div><aside><div class="panel"><h2>Regra prática</h2><div class="routine" style="grid-template-columns:1fr"><div class="routine-item"><strong>24 horas depois</strong><span>Relembre o assunto e faça 5–10 questões.</span></div><div class="routine-item"><strong>7 dias depois</strong><span>Refaça questões erradas e revise pontos fracos.</span></div><div class="routine-item"><strong>14 dias depois</strong><span>Teste a memória sem consultar o resumo.</span></div><div class="routine-item"><strong>Antes do simulado</strong><span>Revise os erros recorrentes, não tudo de novo.</span></div></div></div><div class="panel"><h2>Caderno de erros</h2><textarea class="field" id="errors" rows="7" placeholder="Matéria · questão/assunto · por que errei · regra correta · quando revisar"></textarea><p class="muted">Salvo automaticamente neste navegador.</p></div></aside></div>
+</section>
+<section class="page" id="page-simulados">
+<div class="grid"><div class="panel"><h2>Resultados dos simulados</h2><p class="muted">Registre sua pontuação e observe a evolução. O percentual é informado por você.</p><div class="scores"><label>Simulado 1<input class="field score" id="s1" placeholder="Ex.: 55%"></label><label>Simulado 2<input class="field score" id="s2" placeholder="Ex.: 65%"></label><label>Simulado 3<input class="field score" id="s3" placeholder="Ex.: 75%"></label><label>Simulado final<input class="field score" id="s4" placeholder="Ex.: 82%"></label></div><label style="display:block;margin-top:16px;color:var(--muted);font-size:.85rem">O que mais errei?<textarea class="field" id="simErrors" rows="5" placeholder="Ex.: regra de três, LGPD, atos administrativos..."></textarea></label></div><aside><div class="panel"><h2>Como corrigir um simulado</h2><ol><li>Separe erros por matéria.</li><li>Classifique: não sabia, confundi ou errei por atenção.</li><li>Volte à teoria só no ponto necessário.</li><li>Refaça as questões sem olhar o gabarito.</li><li>Marque os tópicos correspondentes no edital.</li></ol></div><div class="panel"><h2>Reta final</h2><p class="muted">O objetivo do último simulado é descobrir lacunas corrigíveis, não decorar respostas. Na última sessão, reduza o ritmo e organize a logística para a prova.</p></div></aside></div>
+</section>
+<section class="page" id="page-sources">
+<div class="panel"><h2>Edital e documentos oficiais</h2><p class="muted">Use os documentos oficiais como fonte principal e confira publicações e retificações da banca.</p><ul><li><a href="https://concursos.curitiba.pr.gov.br/documento/00/0/2026/4/19/1/1" target="_blank" rel="noopener">Página de documentos da Prefeitura de Curitiba</a> — edital retificado e anexos.</li><li><a href="https://cpmc-fafipa.selecao.net.br/concurso/2-concurso-publico-do-municipio-de-curitiba-pr-medio" target="_blank" rel="noopener">Página do concurso na Fundação FAFIPA</a> — cronograma e comunicados.</li><li><a href="https://mid-rh.curitiba.pr.gov.br/Arquivo/Concurso/2026/Anexo%20II%20-%20Conte%C3%BAdos%20Program%C3%A1ticos%20-%204_2026.pdf" target="_blank" rel="noopener">Anexo II — Conteúdos Programáticos (PDF)</a>.</li></ul><p class="notice">Este é um painel independente de organização pessoal, não um canal oficial da Prefeitura ou da FAFIPA. A data de prova indicada no site da banca é 13/12/2026; confirme sempre as atualizações oficiais.</p></div>
+</section>
+<footer class="foot">O progresso fica salvo no armazenamento local deste navegador. Use “Exportar progresso” para guardar uma cópia antes de trocar de dispositivo ou limpar os dados do navegador.</footer>
 </main>
 <script>
 const schedule=[
-["27/10","Língua Portuguesa","Interpretação de textos, ideia central e inferência"],
-["28/10","Língua Portuguesa","Tipologia textual, coesão e coerência"],
-["29/10","Língua Portuguesa","Ortografia, acentuação e emprego de palavras"],
-["30/10","Língua Portuguesa","Classes de palavras e formação de palavras"],
-["02/11","Língua Portuguesa","Sintaxe, concordância, regência e crase"],
-["03/11","Língua Portuguesa","Pontuação, colocação pronominal e reescrita"],
-["04/11","Raciocínio Lógico","Proposições, conectivos e tabelas-verdade"],
-["05/11","Raciocínio Lógico","Equivalências, negações e argumentos"],
-["06/11","Raciocínio Lógico","Conjuntos, porcentagem e razão/proporção"],
-["09/11","Raciocínio Lógico","Problemas, sequências e análise combinatória básica"],
-["10/11","Informática","Sistema operacional, arquivos e pastas"],
-["11/11","Informática","Editor de texto e planilhas eletrônicas"],
-["12/11","Informática","Internet, navegadores, e-mail e ferramentas digitais"],
-["13/11","Informática","Segurança da informação, golpes, backup e nuvem"],
-["16/11","Legislação","Lei Federal nº 13.460/2017: direitos do usuário de serviços públicos"],
-["17/11","Legislação","Legislação municipal indicada no edital: leitura literal e questões"],
-["18/11","Direito Administrativo","Princípios da Administração Pública"],
-["19/11","Direito Administrativo","Atos administrativos: elementos, atributos e anulação"],
-["20/11","Direito Administrativo","Poderes administrativos e responsabilidade do Estado"],
-["23/11","Direito Administrativo","Agentes públicos, deveres, responsabilidades e processo administrativo"],
-["24/11","Direito Constitucional","Princípios fundamentais e direitos e garantias fundamentais"],
-["25/11","Direito Constitucional","Administração Pública na Constituição Federal"],
-["26/11","Administração","Organização administrativa, funções e processos de trabalho"],
-["27/11","Administração","Atendimento ao público, comunicação e qualidade"],
-["30/11","Administração","Ética no serviço público, cidadania e conduta profissional"],
-["01/12","Gestão documental","Protocolo, classificação, tramitação, arquivo e conservação"],
-["02/12","Redação oficial","Características, clareza, concisão e documentos oficiais"],
-["03/12","Revisão geral","Português: questões e revisão do caderno de erros"],
-["04/12","Revisão geral","Raciocínio lógico e informática: bateria de questões"],
-["07/12","Revisão geral","Legislação e Direito Administrativo: lei seca + questões"],
-["08/12","Revisão geral","Direito Constitucional, Administração e ética"],
-["09/12","Simulado","Simulado completo cronometrado e correção detalhada"],
-["10/12","Correção de rota","Reestudar os 3 assuntos com mais erros no simulado"],
-["11/12","Revisão leve","Mapas mentais, artigos-chave, logística e descanso"]
+["27/10","Língua Portuguesa","Interpretação, compreensão global, ponto de vista do autor, inferências, gêneros e tipologias textuais."],
+["28/10","Língua Portuguesa","Comunicação e variações linguísticas; coesão, coerência, semântica e figuras de linguagem."],
+["29/10","Língua Portuguesa","Ortografia, acentuação, letra e fonema, sílaba, encontros vocálicos/consonantais e dígrafos."],
+["30/10","Língua Portuguesa","Classes de palavras, funções sintáticas, concordância nominal e verbal."],
+["02/11","Língua Portuguesa","Pontuação, uso dos porquês e Literatura Brasileira: prosa, poesia, autores, obras e figuras de linguagem."],
+["03/11","Raciocínio Lógico","Quatro operações, comparações, arredondamentos, aproximações, estimativas, razão e proporção."],
+["04/11","Raciocínio Lógico","Regra de três simples e composta; grandezas direta/inversamente proporcionais; porcentagem e juros simples."],
+["05/11","Raciocínio Lógico","Tales, comprimento da circunferência, áreas de triângulos/retângulos/círculos e medidas de superfícies."],
+["06/11","Raciocínio Lógico","Direção, sequências numéricas/figuras/letras e sequências lógicas."],
+["09/11","Raciocínio Lógico","Estatística, média/moda/mediana, tabelas, gráficos, probabilidade e eventos."],
+["10/11","Informática","Conceitos, hardware de entrada/saída, software e atalhos de teclado."],
+["11/11","Informática","Arquivos, segurança de dados, Windows 10/11 e Linux Ubuntu."],
+["12/11","Informática","Word 2016 e Excel 2016: ferramentas, operações e questões práticas."],
+["13/11","Informática e Legislação","Navegadores, Google Drive, e-mails, busca na Web, IA generativa; panorama das leis do edital."],
+["16/11","Legislação","Lei Orgânica de Curitiba; Lei Municipal nº 1.656/1958 (Estatuto dos Funcionários)."],
+["17/11","Legislação","Lei Municipal nº 7.671/1991; Constituição Federal: artigos e títulos expressamente listados."],
+["18/11","Legislação","Improbidade administrativa (Leis nº 8.429/1992 e 14.230/2021); LAI; prioridade de atendimento."],
+["19/11","Legislação","ECA: disposições preliminares e direitos fundamentais; LINDB, arts. 20–30; LGPD, Capítulo IV."],
+["20/11","Administração Pública","Conceitos, princípios, organização, planejamento, organização, direção e controle."],
+["23/11","Administração Pública","Processos administrativos; organização do ambiente de trabalho; gestão de pessoas; orçamento público."],
+["24/11","Direito Administrativo","Atos, bens e serviços públicos; Lei nº 14.133/2021: licitações e contratos."],
+["25/11","Direito Administrativo","Lei Municipal nº 16.466/2024: processo administrativo municipal; processo administrativo disciplinar (Lei nº 1.656/1958)."],
+["26/11","Direito Administrativo","Responsabilidade de agentes públicos e improbidade administrativa; questões dos tópicos de Direito Administrativo."],
+["27/11","Direito Constitucional","Princípios fundamentais, direitos e garantias fundamentais, poder constituinte."],
+["30/11","Direito Constitucional","Normas constitucionais, hierarquia, interpretação e Administração Pública na Constituição."],
+["01/12","Ética e atendimento","Ética, integridade, transparência, conflitos de interesses e relações interpessoais."],
+["02/12","Ética e informação","Lei nº 13.460/2017; comunicação; sistemas de informação organizacional."],
+["03/12","Arquivologia e redação","Arquivologia, princípios, gestão documental, Lei nº 8.159/1991, correspondência comercial e redação oficial."],
+["04/12","Pesquisa e revisão","Métodos e Técnicas de Pesquisa; revisar tópicos pendentes do edital e resolver questões mistas."],
+["07/12","Revisão 1","Português, raciocínio lógico e informática: questões cronometradas e correção dos erros."],
+["08/12","Revisão 2","Legislação: leitura dirigida das leis e artigos citados no edital + questões."],
+["09/12","Simulado completo","Simulado cronometrado em condições próximas às da prova; registre a pontuação."],
+["10/12","Correção de rota","Reestudar os pontos fracos do simulado; refazer questões erradas e revisar leis-chave."],
+["11/12","Revisão leve","Resumo de erros recorrentes, documentos/logística da prova e descanso adequado."]
 ];
-const topics={
-"Língua Portuguesa":["Compreensão e interpretação de textos","Tipologia e gêneros textuais","Coesão, coerência e sentidos do texto","Ortografia e acentuação","Classes de palavras e emprego","Sintaxe do período e termos da oração","Concordância verbal e nominal","Regência verbal e nominal","Crase","Pontuação","Colocação pronominal","Reescrita e equivalência de estruturas"],
-"Raciocínio Lógico":["Proposições e conectivos lógicos","Tabelas-verdade e equivalências","Negação de proposições e argumentos","Conjuntos e operações","Razão, proporção e porcentagem","Sequências e padrões","Resolução de problemas"],
-"Informática":["Sistema operacional e gerenciamento de arquivos","Editores de texto","Planilhas eletrônicas","Internet e navegadores","Correio eletrônico e ferramentas de colaboração","Segurança da informação, senhas e phishing","Backup e armazenamento em nuvem"],
-"Legislação":["Lei Federal nº 13.460/2017: participação, proteção e defesa dos direitos do usuário dos serviços públicos","Legislação municipal expressamente listada no edital e suas alterações"],
-"Direito Administrativo":["Princípios expressos e reconhecidos da Administração Pública","Atos administrativos","Poderes administrativos","Agentes públicos","Responsabilidade civil do Estado","Processo administrativo e controle da Administração"],
-"Direito Constitucional":["Princípios fundamentais da Constituição","Direitos e garantias fundamentais","Direitos sociais e cidadania","Organização do Estado","Administração Pública na Constituição Federal"],
-"Administração e serviço público":["Organização e funções administrativas","Planejamento, organização, direção e controle","Rotinas administrativas e atendimento ao público","Ética, integridade e conduta no serviço público","Comunicação institucional e trabalho em equipe"],
-"Gestão documental e redação oficial":["Protocolo e tramitação de documentos","Classificação, organização e conservação de arquivos","Gestão da informação e documentos","Redação oficial: clareza, precisão, objetividade e concisão","Documentos oficiais conforme o programa do edital"]
-};
+const syllabus=[
+["Língua Portuguesa",[
+"1.1.1 Análise e interpretação de texto: compreensão global; ponto de vista do autor; ideias centrais desenvolvidas em cada parágrafo; inferências.",
+"1.1.2 Comunicação, linguagem e variações linguísticas.",
+"1.1.3 Gêneros e tipologias textuais.",
+"1.1.4 Elementos de coesão e coerência textual.",
+"1.1.5 Ortografia oficial: acentuação gráfica, letra e fonema, sílaba, encontros vocálicos e consonantais, dígrafos.",
+"1.1.6 Emprego das classes de palavras.",
+"1.1.7 Semântica: sinônimos e antônimos, significação das palavras, sentido conotativo e denotativo.",
+"1.1.8 Funções sintáticas.",
+"1.1.9 Concordâncias nominal e verbal.",
+"1.1.10 Pontuação.",
+"1.1.11 Uso dos porquês.",
+"1.1.12 Literatura Brasileira: prosa e poesia, autores e obras, figuras de linguagem."
+]],
+["Raciocínio Lógico",[
+"1.2.1 As quatro operações fundamentais.",
+"1.2.2 Comparações, arredondamentos, aproximações e estimativas.",
+"1.2.3 Teoremas de Tales.",
+"1.2.4 Comprimento da circunferência.",
+"1.2.5 Cálculo de área: triângulos, retângulos e círculos.",
+"1.2.6 Medidas de superfícies.",
+"1.2.7 Noções de direção: norte, sul, leste e oeste, esquerda e direita, para cima e para baixo.",
+"1.2.8 Estatística: média, moda e mediana.",
+"1.2.9 Dados, tabelas, gráficos e suas interpretações.",
+"1.2.10 Sequência de números, figuras e letras.",
+"1.2.11 Sequências lógicas.",
+"1.2.12 Probabilidade: certeza e impossibilidade, fenômenos aleatórios, espaço amostral e evento.",
+"1.2.13 Eventos dependentes e independentes.",
+"1.2.14 Probabilidades da união e interseção.",
+"1.2.15 Grandezas direta e inversamente proporcionais.",
+"1.2.16 Razão e proporção.",
+"1.2.17 Regra de três simples e composta.",
+"1.2.18 Matemática financeira: sistema monetário brasileiro, porcentagem, juros simples.",
+"1.2.19 Resolução de problemas."
+]],
+["Noções de Informática",[
+"1.3.1 Conceitos de informática.",
+"1.3.2 Hardware de entrada e saída.",
+"1.3.3 Software.",
+"1.3.4 Atalhos de teclado.",
+"1.3.5 Gerenciamento de arquivos.",
+"1.3.6 Segurança de dados.",
+"1.3.7 Ambientes operacionais: Windows 10 e 11 e Linux Ubuntu.",
+"1.3.8 Processador de texto: Word 2016.",
+"1.3.9 Planilhas eletrônicas: Excel 2016.",
+"1.3.10 Navegadores de Internet.",
+"1.3.11 Armazenamento externo e ferramentas de gerenciamento e compartilhamento de arquivos em nuvem: Google Drive.",
+"1.3.12 E-mails: Outlook, Gmail, Webmail (Zimbra).",
+"1.3.13 Busca e pesquisa na Web.",
+"1.3.14 Inteligência artificial e ferramentas generativas de texto: ChatGPT, Copilot, Gemini."
+]],
+["Legislação",[
+"1.4.1 Lei Orgânica do Município de Curitiba, de 10 de abril de 1990, e suas alterações: organização político-administrativa do Município de Curitiba.",
+"1.4.2 Lei Municipal nº 1.656, de 21 de outubro de 1958, e suas alterações: Estatuto dos Funcionários Públicos Municipais.",
+"1.4.3 Lei Municipal nº 7.671, de 20 de junho de 1991, e suas alterações: Organização Administrativa do Poder Executivo do Município de Curitiba.",
+"1.4.4 Constituição da República Federativa do Brasil de 1988: Título I – Dos Princípios Fundamentais, artigos 1.º ao 4.º; Título II – Dos Direitos e Garantias Fundamentais, artigos 5.º ao 17; Título III – Da Organização do Estado, artigos 18 e 19, 29 e 30, 37 ao 41; Título IV – Da Organização dos Poderes, artigos 44 ao 75.",
+"1.4.5 Lei Federal nº 8.429, de 2 de junho de 1992, e Lei Federal nº 14.230, de 25 de outubro de 2021: improbidade administrativa.",
+"1.4.6 Lei Federal nº 12.527, de 18 de novembro de 2011: acesso à informação.",
+"1.4.7 Lei Federal nº 10.048, de 8 de novembro de 2000, e suas alterações: prioridade de atendimento às pessoas.",
+"1.4.8 Lei Federal nº 8.069, de 13 de julho de 1990: Estatuto da Criança e do Adolescente – Disposições Preliminares e Direitos Fundamentais.",
+"1.4.9 Decreto-Lei Federal nº 4.657, de 4 de setembro de 1942: Lei de Introdução às Normas do Direito Brasileiro, artigos 20 ao 30.",
+"1.4.10 Lei Federal nº 13.709, de 14 de agosto de 2018: Lei Geral de Proteção de Dados Pessoais, Capítulo IV."
+]],
+["Fundamentos da Administração Pública",[
+"2.1.1 Fundamentos da Administração Pública: conceitos, princípios e organização.",
+"2.1.2 Planejamento, organização, direção e controle.",
+"2.1.3 Processos administrativos: conceitos, princípios, fases e modalidades.",
+"2.1.4 Organização do ambiente de trabalho.",
+"2.1.5 Gestão de pessoas.",
+"2.1.6 Orçamento público."
+]],
+["Direito Administrativo",[
+"2.2.1 Atos administrativos.",
+"2.2.2 Bens públicos.",
+"2.2.3 Serviços públicos.",
+"2.2.4 Lei Federal nº 14.133, de 1.º de abril de 2021, e suas alterações: licitações e contratos administrativos.",
+"2.2.5 Lei Municipal nº 16.466, de 28 de outubro de 2024, e suas alterações: processo administrativo no âmbito da Administração Pública Municipal de Curitiba.",
+"2.2.6 Lei Municipal nº 1.656, de 21 de agosto de 1958, e suas alterações: processo administrativo disciplinar no âmbito do Estatuto dos Funcionários Públicos Municipais de Curitiba.",
+"2.2.7 Constituição da República Federativa do Brasil de 1988 e Lei Federal nº 8.429, de 2 de junho de 1992, e suas alterações: responsabilidade dos agentes públicos e improbidade administrativa."
+]],
+["Direito Constitucional",[
+"2.3.1 Princípios fundamentais.",
+"2.3.2 Direitos e garantias fundamentais.",
+"2.3.3 Poder constituinte.",
+"2.3.4 Normas constitucionais e hierarquia das normas.",
+"2.3.5 Interpretação constitucional.",
+"2.3.6 Administração Pública na Constituição Federal."
+]],
+["Ética, Relacionamento e Atendimento no Serviço Público",[
+"2.4.1 Ética, integridade, transparência e conflitos de interesses.",
+"2.4.2 Relações interpessoais.",
+"2.4.3 Lei Federal nº 13.460, de 26 de junho de 2017, e suas alterações: participação, proteção e defesa dos direitos do usuário dos serviços públicos da Administração Pública.",
+"2.4.4 Comunicação."
+]],
+["Gestão da Informação, Arquivologia e Redação Oficial",[
+"2.5.1 Sistemas de informação organizacional.",
+"2.5.2 Arquivologia: conceitos, princípios e gestão documental. Lei Federal nº 8.159, de 8 de janeiro de 1991, e suas alterações: política nacional de arquivos públicos e privados.",
+"2.5.3 Correspondência comercial.",
+"2.5.4 Redação oficial."
+]],
+["Métodos e Técnicas de Pesquisa",[
+"2.6 Métodos e Técnicas de Pesquisa (o Anexo II não apresenta subitens adicionais para este tópico)."
+]]
+];
 const KEY="rotaAprovacaoCuritiba_v1";
-let state=JSON.parse(localStorage.getItem(KEY)||"{}");
-state.days=state.days||{};state.topics=state.topics||{};state.reviews=state.reviews||{};state.scores=state.scores||{};state.errors=state.errors||"";
+let state={};
+try{state=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){state={}}
+state.days=state.days||{};state.topics=state.topics||{};state.reviews=state.reviews||{};state.scores=state.scores||{};state.errors=state.errors||"";state.simErrors=state.simErrors||"";
+let activePhase=1;
 function save(){localStorage.setItem(KEY,JSON.stringify(state));renderStats()}
-function safe(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
-function renderDays(){document.getElementById("days").innerHTML=schedule.map((d,i)=>'<div class="day" id="day-'+i+'"><div><div class="date">'+d[0]+'</div><small>'+d[1]+'</small></div><label><input type="checkbox" data-day="'+i+'" '+(state.days[i]?"checked":"")+'><span><strong>'+d[2]+'</strong><br><small>Teoria + questões + revisão ativa</small></span></label></div>').join("");document.querySelectorAll("[data-day]").forEach(el=>el.addEventListener("change",e=>{state.days[e.target.dataset.day]=e.target.checked;save()}))}
-function renderSubjects(){document.getElementById("subjects").innerHTML=Object.entries(topics).map(([subject,list])=>'<details class="subject" open><summary>'+subject+' <span class="muted">('+list.length+' itens)</span></summary>'+list.map((t,i)=>{let id=subject+"::"+i;return '<label class="topic"><input type="checkbox" data-topic="'+safe(id)+'" '+(state.topics[id]?"checked":"")+'><span>'+t+'</span></label>'}).join("")+'</details>').join("");document.querySelectorAll("[data-topic]").forEach(el=>el.addEventListener("change",e=>{state.topics[e.target.dataset.topic]=e.target.checked;save()}))}
-function renderReviews(){const rs=[["Revisão D+1","Revisar o conteúdo do dia anterior"],["Revisão D+7","Revisar os tópicos estudados há uma semana"],["Revisão D+14","Revisar conteúdos mais antigos e erros recorrentes"],["Questões erradas","Refazer sem consultar a resposta"]];document.getElementById("reviews").innerHTML=rs.map(([a,b],i)=>'<label class="topic"><input type="checkbox" data-review="'+i+'" '+(state.reviews[i]?"checked":"")+'><span><strong>'+a+'</strong><br><small class="muted">'+b+'</small></span></label>').join("");document.querySelectorAll("[data-review]").forEach(el=>el.addEventListener("change",e=>{state.reviews[e.target.dataset.review]=e.target.checked;save()}))}
-function renderStats(){let done=Object.values(state.days).filter(Boolean).length;let pct=Math.round(done/schedule.length*100);document.getElementById("percent").textContent=pct+"%";document.getElementById("bar").style.width=pct+"%";document.getElementById("progressText").textContent=done+" de "+schedule.length+" dias concluídos";document.querySelectorAll(".score").forEach(el=>{if(document.activeElement!==el)el.value=state.scores[el.id]||""});document.getElementById("errors").value=state.errors||""}
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function showPage(name){document.querySelectorAll(".page").forEach(function(p){p.classList.toggle("active",p.id==="page-"+name)});document.querySelectorAll(".nav button").forEach(function(b){b.classList.toggle("active",b.dataset.page===name)});if(name==="plan")renderDays();window.scrollTo({top:0,behavior:"smooth"})}
+function openPhase(n){activePhase=n;showPage("plan");renderDays()}
+function phaseOf(i){return i<14?1:(i<29?2:3)}
+function renderDays(){let titles={1:"Construir a base",2:"Conhecimentos específicos",3:"Revisar e consolidar"};let desc={1:"Português, raciocínio lógico, informática e legislação básica.",2:"Administração Pública, Direito, ética, atendimento e gestão da informação.",3:"Simulados, correção de erros e revisão final."};document.getElementById("phaseLabel").textContent="FASE 0"+activePhase;document.getElementById("phaseTitle").textContent=titles[activePhase];document.getElementById("phaseDesc").textContent=desc[activePhase];let items=schedule.map(function(d,i){return {d:d,i:i}}).filter(function(x){return phaseOf(x.i)===activePhase});document.getElementById("days").innerHTML=items.map(function(x){let d=x.d,i=x.i,done=!!state.days[i];return '<article class="day '+(done?"done":"")+'" id="day-'+i+'"><div class="date">'+d[0]+'</div><div><h3>'+esc(d[1])+'</h3><p>'+esc(d[2])+'</p></div><label><input type="checkbox" data-day="'+i+'" '+(done?"checked":"")+'> Concluído</label></article>'}).join("");document.querySelectorAll("[data-day]").forEach(function(el){el.addEventListener("change",function(e){state.days[e.target.dataset.day]=e.target.checked;save();renderDays()})});let done=items.filter(function(x){return !!state.days[x.i]}).length;document.getElementById("phaseProgress").textContent=done+"/"+items.length+" concluídos";document.getElementById("phaseBar").style.width=Math.round(done/items.length*100)+"%"}
+function renderSubjects(){let q=(document.getElementById("topicSearch").value||"").toLowerCase().trim();let html=syllabus.map(function(group,g){let items=group[1].map(function(t,i){let id=g+"-"+i;return {t:t,id:id,checked:!!state.topics[id]}}).filter(function(o){return !q||o.t.toLowerCase().includes(q)||group[0].toLowerCase().includes(q)});if(!items.length)return "";return '<details class="topic-group" '+(q?"open":"")+'><summary>'+esc(group[0])+' <span>'+items.filter(function(o){return o.checked}).length+'/'+items.length+' marcados</span></summary><div class="topic-list">'+items.map(function(o){return '<label class="topic"><input type="checkbox" data-topic="'+o.id+'" '+(o.checked?"checked":"")+'><span>'+esc(o.t)+'</span></label>'}).join("")+'</div></details>'}).join("");document.getElementById("subjects").innerHTML=html||'<p class="muted">Nenhum tópico encontrado. Tente outra palavra.</p>';document.querySelectorAll("[data-topic]").forEach(function(el){el.addEventListener("change",function(e){state.topics[e.target.dataset.topic]=e.target.checked;save();renderSubjects()})});let total=syllabus.reduce(function(n,g){return n+g[1].length},0);let done=Object.values(state.topics).filter(Boolean).length;document.getElementById("topicProgressText").textContent=done+" de "+total+" tópicos marcados";document.getElementById("topicBar").style.width=Math.round(done/total*100)+"%";document.getElementById("metricTopics").textContent=Math.round(done/total*100)+"%"}
+function renderReviews(){let list=[["Revisão de 24 horas","Volte ao assunto estudado ontem; explique sem consultar e faça questões."],["Revisão de 7 dias","Refaça questões erradas da semana passada."],["Revisão de 14 dias","Teste o que ainda lembra sem olhar as anotações."],["Caderno de erros","Revise os erros que se repetem e refaça as questões."],["Leitura de legislação","Retome os artigos e leis citados no Anexo II."]];document.getElementById("reviews").innerHTML=list.map(function(r,i){return '<label class="review"><input type="checkbox" data-review="'+i+'" '+(state.reviews[i]?"checked":"")+'><span><strong>'+r[0]+'</strong><small>'+r[1]+'</small></span></label>'}).join("");document.querySelectorAll("[data-review]").forEach(function(el){el.addEventListener("change",function(e){state.reviews[e.target.dataset.review]=e.target.checked;save()})})}
+function renderStats(){let done=Object.values(state.days).filter(Boolean).length;let total=syllabus.reduce(function(n,g){return n+g[1].length},0);let topicDone=Object.values(state.topics).filter(Boolean).length;document.getElementById("metricDone").textContent=done+"/"+schedule.length;document.getElementById("metricTopics").textContent=Math.round(topicDone/total*100)+"%";document.getElementById("overallBar").style.width=Math.round(done/schedule.length*100)+"%";let pending=schedule.findIndex(function(d,i){return !state.days[i]});let phase=pending<0?3:phaseOf(pending);document.getElementById("metricPhase").textContent=pending<0?"Concluído":"Fase "+phase;document.getElementById("nextTitle").textContent=pending<0?"Plano diário concluído!":schedule[pending][1]+" · "+schedule[pending][0];document.getElementById("nextText").textContent=pending<0?"Use o checklist e o caderno de erros para manter a revisão.":schedule[pending][2];for(let p=1;p<=3;p++){let arr=schedule.map(function(d,i){return i}).filter(function(i){return phaseOf(i)===p});let d=arr.filter(function(i){return !!state.days[i]}).length;let el=document.getElementById("homePhase"+p);if(el)el.textContent=d+"/"+arr.length+" dias concluídos"}document.querySelectorAll(".score").forEach(function(el){if(document.activeElement!==el)el.value=state.scores[el.id]||""});let err=document.getElementById("errors");if(err&&document.activeElement!==err)err.value=state.errors||"";let sim=document.getElementById("simErrors");if(sim&&document.activeElement!==sim)sim.value=state.simErrors||""}
+function goNextPending(){let i=schedule.findIndex(function(d,i){return !state.days[i]});if(i<0)i=0;openPhase(phaseOf(i));setTimeout(function(){let el=document.getElementById("day-"+i);if(el)el.scrollIntoView({behavior:"smooth",block:"center"})},80)}
+function clearTopicFilter(){document.getElementById("topicSearch").value="";renderSubjects()}
+function exportProgress(){let blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});let url=URL.createObjectURL(blob);let a=document.createElement("a");a.href=url;a.download="rota-aprovacao-progresso.json";a.click();URL.revokeObjectURL(url)}
+document.getElementById("topicSearch").addEventListener("input",renderSubjects);
+document.querySelectorAll(".score").forEach(function(el){el.addEventListener("input",function(e){state.scores[e.target.id]=e.target.value;save()})});
+document.getElementById("errors").addEventListener("input",function(e){state.errors=e.target.value;save()});
+document.getElementById("simErrors").addEventListener("input",function(e){state.simErrors=e.target.value;save()});
 renderDays();renderSubjects();renderReviews();renderStats();
-document.querySelectorAll(".score").forEach(el=>el.addEventListener("input",e=>{state.scores[e.target.id]=e.target.value;save()}));document.getElementById("errors").addEventListener("input",e=>{state.errors=e.target.value;save()});
-document.getElementById("todayBtn").addEventListener("click",()=>{let i=schedule.findIndex((d,i)=>!state.days[i]);if(i<0)i=0;document.getElementById("day-"+i).scrollIntoView({behavior:"smooth",block:"center"})});
-document.getElementById("exportBtn").addEventListener("click",()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="rota-aprovacao-progresso.json";a.click();URL.revokeObjectURL(url)});
 </script></body></html>
